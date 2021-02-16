@@ -1,0 +1,16 @@
+## Middleware create kora:#############
+
+first e command : php artisan make:middleware Test(jekono name);
+
+tarpor kernel e giye kaj : 63 er porer line e 'test' => \App\Http\Middleware\Test::class, code likhte hobe;
+
+erpor route e giye :Route::get('/view', 'Backend\UserController@view')->name('users.view')->middleware('test'); eikaj korte hobe
+
+tarpor Test(jekono name).php ei page e eshe : if(Auth::check()){
+        return $next($request);
+        }else{
+            return redirect('/login');
+            // return redirect()->back();
+        }
+
+ei code lekhlei kaj hoi 
