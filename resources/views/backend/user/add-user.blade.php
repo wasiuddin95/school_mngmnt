@@ -40,11 +40,11 @@
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="usertype">User Role</label>
-                                        <select name="usertype" id="usertype" class="form-control">
+                                        <label for="role">User Role</label>
+                                        <select name="role" id="role" class="form-control">
                                             <option value="">Select Role</option>
-                                            <option value="Admin">Admin</option>
-                                            <option value="User">User</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="Operator">Operator</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -58,14 +58,6 @@
                                         <input type="email" name="email" class="form-control">
                                         <font style="color: red;">
                                             {{($errors->has('email'))?($errors->first('email')):''}}</font>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" id="password" class="form-control">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="password">Confirm Password</label>
-                                        <input type="password" name="password2" class="form-control">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <input type="submit" value="submit" class="btn btn-primary">
@@ -92,7 +84,7 @@
                 name: {
                     required: true,
                 },
-                usertype: {
+                role: {
                     required: true,
                 },
                 email: {
@@ -112,7 +104,7 @@
                 name: {
                     required: "Please enter username!! ",
                 },
-                usertype: {
+                role: {
                     required: "Please select an user role!! ",
                 },
                 email: {

@@ -12,7 +12,7 @@ class UserController extends Controller
 
     public function view()
     {
-        $data['allData'] = User::all(); 
+        $data['allData'] = User::where('usertype','admin')->get(); 
         return view('backend.user.view-user',$data);
     }
 
@@ -27,11 +27,14 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users,email'
         ]);
+        $code = rand(100000,999999);
         $data = new User();
-        $data->usertype = $request->usertype;
+        $data->usertype = 'admin';
+        $data->role = $request->role;
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->password = bcrypt($request->password);
+        $data->password = bcrypt($code);
+        $data->code = $code;
         $data->save();
         return redirect()->route('users.view')->with('success','Data Inserted Successfully');
     }
@@ -45,9 +48,9 @@ class UserController extends Controller
     public function update(Request $request,$id)
     {
         $data = User::find($id);
-        $data->usertype = $request->usertype;
         $data->name = $request->name;
         $data->email = $request->email;
+        $data->role = $request->role;
         $data->save();
         return redirect()->route('users.view')->with('success','Data updated successfully');
     }

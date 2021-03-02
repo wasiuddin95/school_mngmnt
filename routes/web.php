@@ -80,7 +80,7 @@ Route::group(['middleware'=>'auth'],function() {
         Route::get('/fee/category/edit/{id}', 'Backend\Setup\feeCategoryController@edit')->name('setups.fee.category.edit');
         Route::post('/fee/category/update/{id}', 'Backend\Setup\feeCategoryController@update')->name('setups.fee.category.update');
         Route::get('/fee/category/delete/{id}', 'Backend\Setup\feeCategoryController@delete')->name('setups.fee.category.delete');
-        Route::get('/student/shift/delete/{id}', 'Backend\Setup\shiftController@delete')->name('setups.student.shift.delete');
+        
 
         // Fee Category Amount
         Route::get('/fee/amount/view', 'Backend\Setup\feeAmountController@view')->name('setups.fee.amount.view');
@@ -90,7 +90,7 @@ Route::group(['middleware'=>'auth'],function() {
         Route::get('/fee/amount/details/{fee_category_id}', 'Backend\Setup\feeAmountController@details')->name('setups.fee.amount.details');
         Route::post('/fee/amount/update/{fee_category_id}', 'Backend\Setup\feeAmountController@update')->name('setups.fee.amount.update');
         Route::get('/fee/amount/delete/{fee_category_id}', 'Backend\Setup\feeAmountController@delete')->name('setups.fee.amount.delete');
-        Route::get('/student/shift/delete/{id}', 'Backend\Setup\shiftController@delete')->name('setups.student.shift.delete');
+        
 
         // Exam Type
         Route::get('/exam/type/view', 'Backend\Setup\examTypeController@view')->name('setups.exam.type.view');
@@ -99,7 +99,7 @@ Route::group(['middleware'=>'auth'],function() {
         Route::get('/exam/type/edit/{id}', 'Backend\Setup\examTypeController@edit')->name('setups.exam.type.edit');
         Route::post('/exam/type/update/{id}', 'Backend\Setup\examTypeController@update')->name('setups.exam.type.update');
         Route::get('/exam/type/delete/{id}', 'Backend\Setup\examTypeController@delete')->name('setups.exam.type.delete');
-        Route::get('/student/shift/delete/{id}', 'Backend\Setup\shiftController@delete')->name('setups.student.shift.delete');
+        
 
         // Subjects Route
         Route::get('/subject/view', 'Backend\Setup\SubjectController@view')->name('setups.subject.view');
@@ -108,7 +108,7 @@ Route::group(['middleware'=>'auth'],function() {
         Route::get('/subject/edit/{id}', 'Backend\Setup\SubjectController@edit')->name('setups.subject.edit');
         Route::post('/subject/update/{id}', 'Backend\Setup\SubjectController@update')->name('setups.subject.update');
         Route::get('/subject/delete/{id}', 'Backend\Setup\SubjectController@delete')->name('setups.subject.delete');
-        Route::get('/student/shift/delete/{id}', 'Backend\Setup\shiftController@delete')->name('setups.student.shift.delete');
+        
 
         // Assign Subjects Route
         Route::get('/assign/subject/view', 'Backend\Setup\AssignSubjectController@view')->name('setups.assign.subject.view');
@@ -119,7 +119,24 @@ Route::group(['middleware'=>'auth'],function() {
         Route::post('/assign/subject/update/{class_id}', 'Backend\Setup\AssignSubjectController@update')->name('setups.assign.subject.update');
         Route::get('/assign/subject/delete/{class_id}', 'Backend\Setup\AssignSubjectController@delete')->name('setups.assign.subject.delete');
 
+        // Designation Route
+        Route::get('/designation/view', 'Backend\Setup\DesignationController@view')->name('setups.designation.view');
+        Route::get('/designation/add', 'Backend\Setup\DesignationController@add')->name('setups.designation.add');
+        Route::post('/designation/store', 'Backend\Setup\DesignationController@store')->name('setups.designation.store');
+        Route::get('/designation/edit/{id}', 'Backend\Setup\DesignationController@edit')->name('setups.designation.edit');
+        Route::post('/designation/update/{id}', 'Backend\Setup\DesignationController@update')->name('setups.designation.update');
+        Route::get('/designation/delete/{id}', 'Backend\Setup\DesignationController@delete')->name('setups.designation.delete');
 
+    });
+
+    Route::prefix('students')->group(function() {
+        Route::get('/reg/view', 'Backend\Student\StudentRegController@view')->name('students.registration.view');
+        Route::get('/reg/add', 'Backend\Student\StudentRegController@add')->name('students.registration.add');
+        Route::post('/reg/store', 'Backend\Student\StudentRegController@store')->name('students.registration.store');
+        Route::get('/reg/edit/{id}', 'Backend\Student\StudentRegController@edit')->name('students.registration.edit');
+        Route::post('/reg/update/{id}', 'Backend\Student\StudentRegController@update')->name('students.registration.update');
+        Route::get('/year-class-wise', 'Backend\Student\StudentRegController@yearClassWise')->name('students.year.class.wise');
+        Route::get('/reg/delete/{id}', 'Backend\Student\StudentRegController@delete')->name('students.registration.delete');
     });
     
 });
